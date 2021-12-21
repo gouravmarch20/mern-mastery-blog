@@ -1,6 +1,7 @@
 import { FETCH_ALL, CREATE, UPDATE, DELETE, LIKE } from '../constants/actionTypes';
 
 import * as api from '../api/index.js';
+// async (dispatch ) ==> redux synax 
 
 export const getPosts = () => async (dispatch) => {
     try {
