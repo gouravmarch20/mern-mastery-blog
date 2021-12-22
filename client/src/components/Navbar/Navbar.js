@@ -9,7 +9,7 @@ import * as actionType from '../../constants/actionTypes';
 import useStyles from './styles';
 
 const Navbar = () => {
-    // acess flocalstorage 
+    // acess localstorage 
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
     const dispatch = useDispatch();
     const location = useLocation();
@@ -17,14 +17,15 @@ const Navbar = () => {
     const classes = useStyles();
 
     const logout = () => {
-        // dispatch({ type: actionType.LOGOUT });
+        dispatch({ type: actionType.LOGOUT });
 
         history.push('/auth');
 
-        setUser(null);
+        setUser(null);//state
     };
 
     useEffect(() => {
+        console.log("location changed")
         const token = user?.token;
 
         if (token) {
@@ -34,7 +35,7 @@ const Navbar = () => {
         }
 
         setUser(JSON.parse(localStorage.getItem('profile')));
-    }, [location]);
+    }, [location]);//! when every location change render
 
     return (
         <AppBar className={classes.appBar} position="static" color="inherit">
