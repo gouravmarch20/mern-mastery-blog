@@ -9,7 +9,6 @@ import * as actionType from '../../constants/actionTypes';
 import useStyles from './styles';
 
 const Navbar = () => {
-    // acess localstorage 
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
     const dispatch = useDispatch();
     const location = useLocation();
@@ -21,11 +20,10 @@ const Navbar = () => {
 
         history.push('/auth');
 
-        setUser(null);//state
+        setUser(null);
     };
 
     useEffect(() => {
-        console.log("location changed")
         const token = user?.token;
 
         if (token) {
@@ -35,12 +33,12 @@ const Navbar = () => {
         }
 
         setUser(JSON.parse(localStorage.getItem('profile')));
-    }, [location]);//! when every location change render
+    }, [location]);
 
     return (
         <AppBar className={classes.appBar} position="static" color="inherit">
             <div className={classes.brandContainer}>
-                <Typography component={Link} to="/" className={classes.heading} variant="h2" align="center">Strone</Typography>
+                <Typography component={Link} to="/" className={classes.heading} variant="h2" align="center">Memories</Typography>
                 <img className={classes.image} src={hologram} alt="icon" height="60" />
             </div>
             <Toolbar className={classes.toolbar}>

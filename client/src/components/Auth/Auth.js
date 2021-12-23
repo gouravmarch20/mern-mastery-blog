@@ -6,7 +6,7 @@ import { GoogleLogin } from 'react-google-login';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
 import Icon from './icon';
-// import { signin, signup } from '../../actions/auth';
+import { signin, signup } from '../../actions/auth';
 import { AUTH } from '../../constants/actionTypes';
 import useStyles from './styles';
 import Input from './Input';
@@ -33,14 +33,13 @@ const SignUp = () => {
         e.preventDefault();
 
         if (isSignup) {
-            // dispatch(signup(form, history));
+            dispatch(signup(form, history));
         } else {
-            // dispatch(signin(form, history));
+            dispatch(signin(form, history));
         }
     };
 
     const googleSuccess = async (res) => {
-        console.log(res)
         const result = res?.profileObj;
         const token = res?.tokenId;
 
@@ -80,9 +79,7 @@ const SignUp = () => {
                         {isSignup ? 'Sign Up' : 'Sign In'}
                     </Button>
                     <GoogleLogin
-                        // !
                         clientId={process.env.REACT_APP_CLIENT_ID}
-
                         render={(renderProps) => (
                             <Button className={classes.googleButton} color="primary" fullWidth onClick={renderProps.onClick} disabled={renderProps.disabled} startIcon={<Icon />} variant="contained">
                                 Google Sign In

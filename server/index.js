@@ -12,6 +12,7 @@ connectWithDb();
 
 
 const postRoutes = require('./routes/posts');
+const userRouter = require("./routes/user.js");
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))//
 app.use(cors());//
 
 app.use('/posts', postRoutes);
+app.use("/user", userRouter);
 
 // connect with databases
 
