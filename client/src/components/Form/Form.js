@@ -37,12 +37,12 @@ const Form = ({ currentId, setCurrentId }) => {
       clear();
     }
   };
-
+// ! no signed in case :
   if (!user?.result?.name) {
     return (
       <Paper className={classes.paper} elevation={6}>
         <Typography variant="h6" align="center">
-          Please Sign In to create your own memories and like other's memories.
+          Please Sign in to upload your owm view  like other's are sharing stock.
         </Typography>
       </Paper>
     );

@@ -1,6 +1,6 @@
 import { START_LOADING, END_LOADING, FETCH_ALL, FETCH_POST, FETCH_BY_SEARCH, CREATE, UPDATE, DELETE, LIKE, COMMENT } from '../constants/actionTypes';
 import * as api from '../api/index.js';
-
+//! TODO: {data} ==> axios request give as object so direct destructure 
 export const getPost = (id) => async (dispatch) => {
   try {
     dispatch({ type: START_LOADING });
@@ -24,7 +24,7 @@ export const getPosts = (page) => async (dispatch) => {
     console.log(error);
   }
 };
-
+//! DATA  2 time --> giving object data
 export const getPostsBySearch = (searchQuery) => async (dispatch) => {
   try {
     dispatch({ type: START_LOADING });

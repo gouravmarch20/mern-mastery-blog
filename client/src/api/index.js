@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({ baseURL: 'http://localhost:4000' });
-
+// ! run before API request  --> for  auth middleware  backend --> sending token to backend server
 API.interceptors.request.use((req) => {
   if (localStorage.getItem('profile')) {
     req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('profile')).token}`;

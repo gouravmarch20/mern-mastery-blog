@@ -43,6 +43,7 @@ export default makeStyles((theme) => ({
     color: theme.palette.getContrastText(deepPurple[500]),
     backgroundColor: deepPurple[500],
   },
+  // ! mobile responive --> sm only work
   [theme.breakpoints.down('sm')]: {
     appBar: {
       padding: '10px 20px',
