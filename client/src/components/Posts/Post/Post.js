@@ -30,22 +30,26 @@ const Post = ({ post, setCurrentId }) => {
       setLikes([...post.likes, userId]);
     }
   };
-
   const Likes = () => {
     if (likes.length > 0) {
+      // if userId already liked the post THEN RUN THIS 
       return likes.find((like) => like === userId)
         ? (
-          <><ThumbUpAltIcon fontSize="small" />&nbsp;{likes.length > 2 ? `You and ${likes.length - 1} others` : `${likes.length} like${likes.length > 1 ? 's' : ''}` }</>
+          //  case 1>  you & other n-1 like  ==> only work if 2 sai more like 
+          // case 2 > 1 like  --> singular
+          //case 3 > 2 likes  --> prulal
+          <><ThumbUpAltIcon fontSize="medium" />&nbsp;{likes.length > 2 ? `You and ${likes.length - 1} others` : `${likes.length} like${likes.length > 1 ? 's' : ''}`}</>
         ) : (
-          <><ThumbUpAltOutlined fontSize="small" />&nbsp;{likes.length} {likes.length === 1 ? 'Like' : 'Likes'}</>
+          // ELSE IF LOGGED IN USER NOT LIKED THE POST
+          <><ThumbUpAltOutlined fontSize="medium" />&nbsp;{likes.length} {likes.length === 1 ? 'Like' : 'Likes'}</>
         );
     }
-
-    return <><ThumbUpAltOutlined fontSize="small" />&nbsp;Like</>;
+    // NO LIKE --> just show thum
+    return <><ThumbUpAltOutlined fontSize="medium" />&nbsp;Like</>;
   };
 
   const openPost = (e) => {
-    // dispatch(getPost(post._id, history));
+
 
     history.push(`/posts/${post._id}`);
   };
@@ -63,35 +67,39 @@ const Post = ({ post, setCurrentId }) => {
           <Typography variant="h6">{post.name}</Typography>
           <Typography variant="body2">{moment(post.createdAt).fromNow()}</Typography>
         </div>
+        {/* if logged in then only  --> post mai click --> set postId --> onClick{openPost} come in action */}
         {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && (
-        <div className={classes.overlay2} name="edit">
-          <Button
-            onClick={(e) => {
-              e.stopPropagation();
-              setCurrentId(post._id);
-            }}
-            style={{ color: 'white' }}
-            size="small"
-          >
-            <MoreHorizIcon fontSize="default" />
-          </Button>
-        </div>
+          <div className={classes.overlay2} name="edit">
+            <Button
+              onClick={(e) => {
+                e.stopPropagation();
+                setCurrentId(post._id);
+              }}
+              style={{ color: 'white' }}
+              size="small"
+            >
+              <MoreHorizIcon fontSize="medium" />
+            </Button>
+          </div>
         )}
+
         <div className={classes.details}>
           <Typography variant="body2" color="textSecondary" component="h2">{post.tags.map((tag) => `#${tag} `)}</Typography>
         </div>
         <Typography className={classes.title} gutterBottom variant="h5" component="h2">{post.title}</Typography>
         <CardContent>
-          <Typography variant="body2" color="textSecondary" component="p">{post.message.split(' ').splice(0, 20).join(' ')}...</Typography>
+          {/* TODO: limiting the text */}
+          <Typography variant="body2" color="textSecondary" component="p">{post?.message?.split(' ').splice(0, 20)?.join(' ')}...</Typography>
         </CardContent>
       </ButtonBase>
       <CardActions className={classes.cardActions}>
         <Button size="small" color="primary" disabled={!user?.result} onClick={handleLike}>
+          {/* like feature disable if user not logged in */}
           <Likes />
         </Button>
         {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && (
           <Button size="small" color="secondary" onClick={() => dispatch(deletePost(post._id))}>
-            <DeleteIcon fontSize="small" /> &nbsp; Delete
+            <DeleteIcon fontSize="medium" /> &nbsp; Delete
           </Button>
         )}
       </CardActions>

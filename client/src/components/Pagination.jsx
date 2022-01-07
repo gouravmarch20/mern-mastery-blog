@@ -1,4 +1,4 @@
-/* eslint-disable react/jsx-props-no-spreading */
+// ! why using x.jxs --> dev style when we importing given file name of different name
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Pagination, PaginationItem } from '@material-ui/lab';
@@ -27,6 +27,7 @@ const Paginate = ({ page }) => {
       variant="outlined"
       color="primary"
       renderItem={(item) => (
+        // redirect to -->  page url
         <PaginationItem {...item} component={Link} to={`/posts?page=${item.page}`} />
       )}
     />

@@ -18,6 +18,7 @@ export default (state = { isLoading: true, posts: [] }, action) => {
     case FETCH_POST:
       return { ...state, post: action.payload.post };
     case LIKE:
+      // ! if post._id === payload._id --> means post is available -->  so return update post --> else keep it same
       return { ...state, posts: state.posts.map((post) => (post._id === action.payload._id ? action.payload : post)) };
     case COMMENT:
       return {

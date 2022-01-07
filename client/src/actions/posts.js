@@ -5,18 +5,22 @@ export const getPost = (id) => async (dispatch) => {
   try {
     dispatch({ type: START_LOADING });
 
-    const { data } = await api.fetchPost(id);
-
+    // console.log(await api.fetchPost(id));
+    const  {data}  = await api.fetchPost(id);
+    console.log(data)
     dispatch({ type: FETCH_POST, payload: { post: data } });
   } catch (error) {
     console.log(error);
   }
 };
-
 export const getPosts = (page) => async (dispatch) => {
   try {
     dispatch({ type: START_LOADING });
+    // --- localhost talk
     const { data: { data, currentPage, numberOfPages } } = await api.fetchPosts(page);
+
+    // -- heroku talk : sucess
+    // const { data, currentPage, numberOfPages } = await api.fetchPosts(page);
 
     dispatch({ type: FETCH_ALL, payload: { data, currentPage, numberOfPages } });
     dispatch({ type: END_LOADING });
@@ -24,7 +28,6 @@ export const getPosts = (page) => async (dispatch) => {
     console.log(error);
   }
 };
-//! DATA  2 time --> giving object data
 export const getPostsBySearch = (searchQuery) => async (dispatch) => {
   try {
     dispatch({ type: START_LOADING });
@@ -36,7 +39,7 @@ export const getPostsBySearch = (searchQuery) => async (dispatch) => {
     console.log(error);
   }
 };
-
+// working 
 export const createPost = (post, history) => async (dispatch) => {
   try {
     dispatch({ type: START_LOADING });

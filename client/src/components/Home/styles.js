@@ -8,6 +8,7 @@ export default makeStyles((theme) => ({
     padding: '16px',
   },
   pagination: {
+    
     borderRadius: 4,
     marginTop: '1rem',
     padding: '16px',

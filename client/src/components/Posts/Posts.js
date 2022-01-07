@@ -6,10 +6,11 @@ import Post from './Post/Post';
 import useStyles from './styles';
 
 const Posts = ({ setCurrentId }) => {
+  // why this : useSelector (s) => s.posts --> telling compiler that we require to extract data from global state 
   const { posts, isLoading } = useSelector((state) => state.posts);
   const classes = useStyles();
 
-  if (!posts.length && !isLoading) return 'No posts';
+  if (!posts?.length && !isLoading) return 'No posts';
 
   return (
     isLoading ? <CircularProgress /> : (
