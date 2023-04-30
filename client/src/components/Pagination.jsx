@@ -1,11 +1,11 @@
 // ! why using x.jxs --> dev style when we importing given file name of different name
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Pagination, PaginationItem } from '@material-ui/lab';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Pagination, PaginationItem } from "@material-ui/lab";
+import { Link } from "react-router-dom";
 
-import { getPosts } from '../actions/posts';
-import useStyles from './styles';
+import { getPosts } from "../actions/posts";
+import useStyles from "./styles";
 
 const Paginate = ({ page }) => {
   const { numberOfPages } = useSelector((state) => state.posts);
@@ -28,7 +28,11 @@ const Paginate = ({ page }) => {
       color="primary"
       renderItem={(item) => (
         // redirect to -->  page url
-        <PaginationItem {...item} component={Link} to={`/posts?page=${item.page}`} />
+        <PaginationItem
+          {...item}
+          component={Link}
+          to={`/posts?page=${item.page}`}
+        />
       )}
     />
   );

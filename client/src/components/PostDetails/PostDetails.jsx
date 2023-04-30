@@ -24,7 +24,7 @@ const Post = () => {
   useEffect(() => {
     dispatch(getPost(id));
   }, [id]);
-// why this --> when have post --> without this post is not workingz
+  // why this --> when have post --> without this post is not workingz
   useEffect(() => {
     if (post) {
       dispatch(
@@ -71,9 +71,7 @@ const Post = () => {
             {moment(post.createdAt).fromNow()}
           </Typography>
           <Divider style={{ margin: "20px 0" }} />
-          <Typography variant="body1">
-            <strong>Realtime Chat - coming soon!</strong>
-          </Typography>
+
           <Divider style={{ margin: "20px 0" }} />
           <CommentSection post={post} />
           <Divider style={{ margin: "20px 0" }} />
